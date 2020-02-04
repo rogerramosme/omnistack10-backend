@@ -4,6 +4,7 @@ const routes = require('./routes')
 require('dotenv/config')
 
 const app = express()
+
 const { DB_USERNAME, DB_PASSWORD } = process.env
 const DB_ADDRESS = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0-pqqqz.mongodb.net/week10?retryWrites=true&w=majority`
 

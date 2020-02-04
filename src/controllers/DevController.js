@@ -18,14 +18,14 @@ module.exports = {
 
       const { name, avatar_url, bio, login } = apiResponse.data
 
-      const techsArray = parseStringAsArray(techsArray)
+      const techsArray = parseStringAsArray(techs)
 
       const location = {
         type: 'Point',
         coordinates: [longitude, latitude]
       }
 
-      const dev = await Dev.create({
+      dev = await Dev.create({
         github_username,
         name: name || login,
         avatar_url,
