@@ -36,5 +36,30 @@ module.exports = {
     }
 
     return response.json(dev)
+  },
+  async update(request, response) {
+    const { github_username, techs } = request.body
+    let apiResponse
+
+    try {
+      const techsArray = parseStringAsArray(techs)
+      const dev = await Dev.findOneAndUpdate(
+        { github_username },
+        { techs: techsArray },
+        { new: true }
+      )
+
+      apiResponse = dev || {
+        status: false,
+        message: `Cannot find dev ${github_username}`
+      }
+    } catch (e) {
+      apiResponse = {
+        status: false,
+        message: `Unable to update user \nError: ${e}`
+      }
+    }
+
+    response.json(apiResponse)
   }
 }
